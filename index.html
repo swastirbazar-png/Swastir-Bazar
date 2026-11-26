@@ -1,1 +1,125 @@
-index.html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#8f2c16">
+<title>Swastir Bazar | স্বস্তির বাজার</title>
+<style>
+:root{--red:#a83219;--orange:#e6532e;--cream:#fff8ed;--ink:#382016;--muted:#806b60}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:#f7efe2;color:var(--ink)}
+header{background:linear-gradient(120deg,#70210f,#bd421f);color:#fff;padding:15px 4%;position:sticky;top:0;z-index:5;box-shadow:0 3px 15px #55200e33}
+.nav{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-size:22px;font-weight:800}.brand small{display:block;font-size:13px;font-weight:500;opacity:.9}
+.nav button,.btn{border:0;border-radius:25px;padding:11px 17px;background:#fff;color:#8f2c16;font-weight:750;cursor:pointer}
+.hero{max-width:1150px;margin:22px auto;padding:34px 5%;border-radius:24px;background:linear-gradient(120deg,#fffaf2ee,#fff4e5ee),url('owner.jpg') center/cover;display:grid;grid-template-columns:1.4fr .8fr;gap:20px;align-items:center;min-height:280px}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.2;margin:0 0 12px;color:#9e321a}.hero p{font-size:18px;line-height:1.8;margin:0 0 20px}.hero-photo{min-height:180px;border:3px dashed #d8ad8b;border-radius:20px;display:grid;place-items:center;text-align:center;color:#98735e;background:#ffffff80;padding:20px}
+.wrap{max-width:1150px;margin:28px auto;padding:0 4%}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.section-head h2{font-size:28px;margin:0 0 16px;color:#9e321a}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:#fffdf9;border:1px solid #eadbca;border-radius:20px;padding:12px;box-shadow:0 5px 18px #6a37100c;display:flex;flex-direction:column}
+.pic{height:210px;border-radius:14px;background:#f5eee7;overflow:hidden;display:grid;place-items:center;color:#9b7865;font-size:15px}.pic img{width:100%;height:100%;object-fit:cover}.tag{align-self:flex-start;background:#f7eab0;color:#68401d;border-radius:20px;padding:5px 12px;margin:12px 0 5px;font-size:13px}.card h3{font-size:19px;margin:5px 0 10px;min-height:50px}.details{display:flex;justify-content:space-between;gap:8px;border-top:1px dashed #cbb9a8;padding-top:10px;margin-top:auto;color:var(--muted)}.price{font-size:23px;font-weight:850;color:#482216}.order{background:linear-gradient(100deg,#a82e17,#e6532e);color:#fff;border:0;border-radius:13px;padding:13px;margin-top:12px;font-size:17px;font-weight:800;cursor:pointer}
+.empty{background:#fffdf9;border:1px dashed #cdb8a5;padding:28px;border-radius:18px;text-align:center;color:var(--muted);grid-column:1/-1}
+footer{background:#35180f;color:#fff;text-align:center;padding:28px 15px;margin-top:45px;line-height:2}footer a{color:#ffd9a8}
+.admin-panel{display:none;background:#fffdf9;border:1px solid #e5d2c0;border-radius:18px;padding:18px;margin:18px 0}.admin-panel.show{display:block}.admin-panel h3{margin-top:0;color:#9e321a}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:14px;font-weight:700}.field input,.field textarea,.field select{width:100%;padding:11px;border:1px solid #d8c7b7;border-radius:10px;font:inherit;background:#fff}.field textarea{min-height:75px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.primary{background:#a83219;color:white;border:0;border-radius:10px;padding:11px 16px;font-weight:750}.secondary{background:#eee2d6;color:#57311f;border:0;border-radius:10px;padding:11px 16px;font-weight:700}.danger{background:#ffe5e0;color:#a32112;border:0;border-radius:9px;padding:7px 10px}
+.admin-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #eee}.admin-row button{margin-left:5px}
+.notice{font-size:13px;color:#78665b;line-height:1.6;margin-top:10px}
+@media(max-width:750px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.hero{grid-template-columns:1fr;padding:25px 6%;margin:14px 3%}.hero-photo{min-height:90px}.pic{height:155px}.card{padding:9px}.card h3{font-size:16px}.price{font-size:19px}.formgrid{grid-template-columns:1fr}}
+@media(max-width:390px){.products{grid-template-columns:1fr}.pic{height:220px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">Swastir Bazar <small>স্বস্তির বাজার</small></div><button onclick="scrollToProducts()">পণ্য দেখুন ↓</button></div></header>
+
+<section class="hero">
+ <div><h1>বিশ্বস্ত পণ্যে স্বস্তির বাজার</h1><p>খাঁটি ও মানসম্মত পণ্য ঘরে বসেই অর্ডার করুন। পছন্দের পণ্য বেছে নিয়ে WhatsApp-এ অর্ডার পাঠান।</p><button class="btn" onclick="scrollToProducts()">এখনই অর্ডার করুন ↓</button></div>
+ <div class="hero-photo">এখানে আপনার নিজের ছবি দেখাতে<br><b>owner.jpg</b> নামে ছবি আপলোড করুন</div>
+</section>
+
+<main class="wrap" id="shop">
+ <div class="section-head"><h2>আমাদের পণ্য</h2><span id="countText">পণ্য তালিকা</span></div>
+ <div id="productGrid" class="products"></div>
+
+ <section class="admin-panel" id="adminPanel">
+  <h3>অ্যাডমিন প্যানেল — পণ্য যোগ/পরিবর্তন</h3>
+  <form id="productForm">
+   <input type="hidden" id="editId">
+   <div class="formgrid">
+    <div class="field"><label for="pName">পণ্যের নাম *</label><input id="pName" required placeholder="যেমন: লিচু ফুলের মধু"></div>
+    <div class="field"><label for="pCategory">ক্যাটাগরি</label><input id="pCategory" placeholder="যেমন: মধু"></div>
+    <div class="field"><label for="pPrice">দাম (টাকা) *</label><input id="pPrice" type="number" min="0" required placeholder="যেমন: ৮৫০"></div>
+    <div class="field"><label for="pWeight">ওজন / পরিমাণ</label><input id="pWeight" placeholder="যেমন: ৫০০ গ্রাম / ১ কেজি"></div>
+    <div class="field full"><label for="pImage">ছবির লিংক (ঐচ্ছিক)</label><input id="pImage" type="url" placeholder="https://..."></div>
+    <div class="field full"><label for="pFile">অথবা মোবাইল থেকে ছবি বাছাই করুন</label><input id="pFile" type="file" accept="image/*"></div>
+    <div class="field full"><label for="pDesc">পণ্যের বিবরণ</label><textarea id="pDesc" placeholder="পণ্যের বিস্তারিত লিখুন"></textarea></div>
+   </div>
+   <div class="actions"><button class="primary" type="submit">পণ্য সংরক্ষণ করুন</button><button class="secondary" type="button" onclick="resetForm()">ফর্ম পরিষ্কার</button></div>
+  </form>
+  <p class="notice">মনে রাখবেন: এই সাধারণ সংস্করণে পণ্যের তালিকা এই ফোন/ব্রাউজারে সংরক্ষিত হয়। অন্য সবার ফোনে একই পণ্য দেখাতে Supabase-এর মতো অনলাইন ডেটাবেজ যুক্ত করতে হবে।</p>
+  <div id="adminList"></div>
+ </section>
+</main>
+
+<footer>
+ <b>Swastir Bazar | স্বস্তির বাজার</b><br>
+ অর্ডার ও যোগাযোগ: <a href="tel:01705102284">01705102284</a><br>
+ <a href="https://www.facebook.com/share/1d9M9cRGBd/" target="_blank" rel="noopener">আমাদের Facebook পেজ</a><br>
+ <button class="btn" style="margin-top:12px" onclick="adminLogin()">অ্যাডমিন লগইন</button>
+</footer>
+
+<script>
+const WHATSAPP_NUMBER = "8801705102284"; // বাংলাদেশের নম্বর: 017... কে 88017... করা হয়েছে
+const ADMIN_PIN = "1234"; // প্রথম লগইনের পর নিচের নির্দেশনা অনুযায়ী নিজের PIN বদলান
+const STORAGE_KEY = "swastir_bazar_products_v1";
+let products = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+let isAdmin = false;
+
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(products));render();}
+function scrollToProducts(){document.getElementById("shop").scrollIntoView({behavior:"smooth"});}
+function money(n){return "৳"+Number(n||0).toLocaleString("bn-BD");}
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+ const grid=document.getElementById("productGrid");
+ document.getElementById("countText").textContent=products.length+"টি পণ্য";
+ if(!products.length){grid.innerHTML='<div class="empty">এখনো কোনো পণ্য যোগ করা হয়নি। অ্যাডমিন লগইন করে প্রথম পণ্য যোগ করুন।</div>';}
+ else grid.innerHTML=products.map(p=>`<article class="card">
+  <div class="pic">${p.image?`<img src="${p.image}" alt="${safe(p.name)}" onerror="this.style.display='none';this.parentElement.innerHTML='ছবি পাওয়া যায়নি'">`:'পণ্যের ছবি যোগ করুন'}</div>
+  <span class="tag">${safe(p.category||"স্বস্তির বাজার")}</span><h3>${safe(p.name)}</h3>
+  ${p.desc?`<p style="font-size:14px;color:#806b60">${safe(p.desc)}</p>`:""}
+  <div class="details"><span>${safe(p.weight||"পরিমাণ জানতে যোগাযোগ করুন")}</span><b class="price">${money(p.price)}</b></div>
+  <button class="order" onclick="orderProduct('${p.id}')">অর্ডার করুন ↓</button>
+ </article>`).join("");
+ if(isAdmin) renderAdmin();
+}
+function orderProduct(id){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ const msg=`আসসালামু আলাইকুম, আমি এই পণ্যটি অর্ডার করতে চাই।%0Aপণ্য: ${encodeURIComponent(p.name)}%0Aওজন: ${encodeURIComponent(p.weight||"জানতে চাই")}%0Aদাম: ${encodeURIComponent(money(p.price))}%0Aআমার নাম: %0Aঠিকানা: `;
+ window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,"_blank");
+}
+function adminLogin(){
+ if(isAdmin){document.getElementById("adminPanel").classList.toggle("show");return;}
+ const pin=prompt("অ্যাডমিন PIN দিন:");
+ if(pin===ADMIN_PIN){isAdmin=true;document.getElementById("adminPanel").classList.add("show");renderAdmin();document.getElementById("adminPanel").scrollIntoView({behavior:"smooth"});}
+ else if(pin!==null) alert("PIN সঠিক হয়নি।");
+}
+function renderAdmin(){
+ document.getElementById("adminList").innerHTML="<h3 style='margin-top:22px'>পণ্য পরিচালনা</h3>"+(products.length?products.map(p=>`<div class="admin-row"><span><b>${safe(p.name)}</b><br><small>${safe(p.weight)} · ${money(p.price)}</small></span><span><button class="secondary" onclick="editProduct('${p.id}')">এডিট</button><button class="danger" onclick="deleteProduct('${p.id}')">মুছুন</button></span></div>`).join(""):"এখনো পণ্য নেই");
+}
+document.getElementById("productForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const id=document.getElementById("editId").value||String(Date.now());
+ let image=document.getElementById("pImage").value.trim();
+ const file=document.getElementById("pFile").files[0];
+ if(file){if(file.size>1200000){alert("ছবিটি ১.২ MB-এর চেয়ে ছোট করুন।");return;}image=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});}
+ const old=products.find(p=>p.id===id);
+ const item={id,name:document.getElementById("pName").value.trim(),category:document.getElementById("pCategory").value.trim(),price:Number(document.getElementById("pPrice").value),weight:document.getElementById("pWeight").value.trim(),image:image||(old?old.image:""),desc:document.getElementById("pDesc").value.trim()};
+ const i=products.findIndex(p=>p.id===id);if(i>=0)products[i]=item;else products.unshift(item);
+ try{save();resetForm();alert("পণ্য সংরক্ষণ হয়েছে।");}catch(err){alert("সংরক্ষণ করা যায়নি। ছবির সাইজ কমিয়ে আবার চেষ্টা করুন।");}
+});
+function editProduct(id){const p=products.find(x=>x.id===id);if(!p)return;
+ document.getElementById("editId").value=p.id;document.getElementById("pName").value=p.name;document.getElementById("pCategory").value=p.category||"";document.getElementById("pPrice").value=p.price;document.getElementById("pWeight").value=p.weight||"";document.getElementById("pImage").value=p.image?.startsWith("data:")?"":p.image||"";document.getElementById("pDesc").value=p.desc||"";document.getElementById("adminPanel").scrollIntoView({behavior:"smooth"});
+}
+function deleteProduct(id){if(confirm("এই পণ্যটি মুছে ফেলবেন?")){products=products.filter(p=>p.id!==id);save();}}
+function resetForm(){document.getElementById("productForm").reset();document.getElementById("editId").value="";}
+render();
+</script>
+</body>
+</html>
